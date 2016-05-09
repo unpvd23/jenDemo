@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+
 
 <%= image_tag @restaurant.image_url %>
 
@@ -22,5 +22,16 @@
   <%= @restaurant.website %>
 </p>
 
+
+    <iframe
+      width="450"
+      height="250"
+      frameborder="0" style="border:0"  
+      src="https://www.google.com/maps/embed/v1/search?key=AIzaSyD5Sh20e9ZsUJXUfhw3mnAogz_vn3_P6e4&q=record+stores+in+Seattle">
+    </iframe> 
+
 <%= link_to 'Edit', edit_restaurant_path(@restaurant), class: "btn btn-link"  %> |
 <%= link_to 'Back', restaurants_path, class: "btn btn-link"  %>
+
+
+
