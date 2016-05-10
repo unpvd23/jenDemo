@@ -1,26 +1,44 @@
+<div class="row">
+
+  <div class="col-md-8">
+    
+    <%= image_tag @restaurant.image_url %>
+
+    <h2><%= @restaurant.name %></h2>
+
+    <p>
+      <strong>Address:</strong>
+      <%= @restaurant.address %>
+    </p>
+
+    <p>
+      <strong>Phone:</strong>
+      <%= @restaurant.phone %>
+    </p>
+
+    <p>
+      <%= link_to @restaurant.website, @restaurant.website %>
+    </p>
 
 
-<%= image_tag @restaurant.image_url %>
+    <%= link_to "Write Review", new_restaurant_review_path(@restaurant), class: "btn btn-primary" %>
+  </div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @restaurant.name %>
-</p>
 
-<p>
-  <strong>Address:</strong>
-  <%= @restaurant.address %>
-</p>
+  <div class="col-md-4">
+    <% if @reviews.blank? %>
+      <h3>No Reviews Yet. Be the first to review!!!</h3>
+    <% else %>
+      <% @reviews.each do |review| %>
+      <p><%= review.rating %></p>
+      <p><%= review.comment %></p>
+      <% end %>
+    <% end %>
+  </div>
 
-<p>
-  <strong>Phone:</strong>
-  <%= @restaurant.phone %>
-</p>
+</div>
 
-<p>
-  <strong>Website:</strong>
-  <%= @restaurant.website %>
-</p>
+
 
 
     <iframe
@@ -29,7 +47,8 @@
       frameborder="0" style="border:0"  
       src="https://www.google.com/maps/embed/v1/search?key=AIzaSyD5Sh20e9ZsUJXUfhw3mnAogz_vn3_P6e4&q=record+stores+in+Seattle">
     </iframe> 
-<%= link_to "Write Review", new_restaurant_review_path(@restaurant), class: "btn btn-primary" %>
+
+
 <%= link_to 'Edit', edit_restaurant_path(@restaurant), class: "btn btn-link"  %> |
 <%= link_to 'Back', restaurants_path, class: "btn btn-link"  %>
 
