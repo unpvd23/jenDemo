@@ -1,6 +1,6 @@
 <div class="row">
 
-  <div class="col-md-8">
+  <div class="col-md-3">
     
     <%= image_tag @restaurant.image_url %>
 
@@ -17,6 +17,7 @@
     </p>
 
     <p>
+      <strong>Website:</strong>
       <%= link_to @restaurant.website, @restaurant.website %>
     </p>
 
@@ -25,32 +26,35 @@
   </div>
 
 
-  <div class="col-md-4">
+  <div class="col-md-9">
+
+
+
     <% if @reviews.blank? %>
+
       <h3>No Reviews Yet. Be the first to review!!!</h3>
+
     <% else %>
+
       <% @reviews.each do |review| %>
-      <p><%= review.rating %></p>
+      <div class="star-rating" data-score= <%= review.rating %> ></div>
       <p><%= review.comment %></p>
       <% end %>
     <% end %>
   </div>
-
 </div>
 
-
-
-
-    <iframe
-      width="450"
-      height="250"
-      frameborder="0" style="border:0"  
-      src="https://www.google.com/maps/embed/v1/search?key=AIzaSyD5Sh20e9ZsUJXUfhw3mnAogz_vn3_P6e4&q=record+stores+in+Seattle">
-    </iframe> 
 
 
 <%= link_to 'Edit', edit_restaurant_path(@restaurant), class: "btn btn-link"  %> |
 <%= link_to 'Back', restaurants_path, class: "btn btn-link"  %>
 
-
-
+<script>
+  $('.star-rating').raty({
+    path: 'https://s3.amazonaws.com/jendemopics/stars',
+      readOnly: true,
+      score: function() {
+      return $(this).attr('data-score');
+    }
+  });
+</script>
